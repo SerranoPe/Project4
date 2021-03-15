@@ -1,0 +1,82 @@
+{
+// Info
+'shortName': 'Microsoft Corporation', 
+'longName': 'Microsoft Corporation', 
+'symbol': 'MSFT', 
+'logo_url': 'https://logo.clearbit.com/microsoft.com'
+'enterpriseValue': 1621096398848, 
+
+// Prices
+'previousClose': 221.4, 
+'regularMarketPreviousClose': 221.4, 
+'regularMarketOpen': 222.72,  
+'open': 222.72,
+'regularMarketPrice': 222.72,
+'bid': 223.27, 
+'ask': 223.45, 
+'regularMarketDayLow': 220.43, 
+'dayLow': 220.43, 
+'regularMarketDayHigh': 225.13, 
+'dayHigh': 225.13, 
+
+
+// Averages
+'fiftyTwoWeekHigh': 232.86, 
+'twoHundredDayAverage': 195.93051, 
+'fiftyDayAverage': 211.70972, 
+'fiftyTwoWeekLow': 132.52, 
+
+// Volume
+'volume': 28950843, 
+'averageVolume10days': 27063883, 
+'averageVolume': 34370758, 
+'regularMarketVolume': 28950843, 
+
+// Cap
+'marketCap': 1686526492672
+
+// Dividends
+'dividendRate': 2.24, 
+'exDividendDate': 1605657600, 
+'trailingAnnualDividendYield': 0.009214092, 
+'fiveYearAvgDividendYield': 1.8, 
+'trailingAnnualDividendRate': 2.04, 
+'dividendYield': 0.0101, 
+'lastDividendValue': 0.51, 
+'lastDividendDate': 1597795200, 
+
+// Other
+'profitMargins': 0.30962, 
+'beta': 0.923331, 
+'trailingPE': 38.69097, 
+'priceToSalesTrailing12Months': 11.792654, 
+'payoutRatio': 0.3455, 
+'forwardPE': 30.40382, 
+'bidSize': 1300, 
+'enterpriseToEbitda': 24.841, 
+'52WeekChange': 0.5638906, 
+'forwardEps': 7.33, 
+'sharesOutstanding': 7567649792, 
+'bookValue': 15.626, 
+'sharesShort': 39634230, 
+'sharesPercentSharesOut': 0.0052, 
+'lastFiscalYearEnd': 1593475200, 
+'heldPercentInstitutions': 0.74093, 
+'netIncomeToCommon': 44280999936, 
+'trailingEps': 5.76, 
+'SandP52WeekChange': 0.17977226, 
+'priceToBook': 14.262127, 
+'heldPercentInsiders': 0.014249999, 
+'nextFiscalYearEnd': 1656547200, 
+'mostRecentQuarter': 1593475200, 
+'shortRatio': 1.09, 
+'sharesShortPreviousMonthDate': 1598832000, 
+'floatShares': 7455727348, 
+'lastSplitDate': 1045526400, 
+'lastSplitFactor': '2:1', 
+'earningsQuarterlyGrowth': -0.151, 
+'dateShortInterest': 1601424000, 
+'pegRatio': 2.31, 
+'shortPercentOfFloat': 0.0053, 
+'sharesShortPriorMonth': 36458662, 
+}

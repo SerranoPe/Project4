@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" contect="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+
+    <title>Paper Trader</title>
+
+    <!-- Styles -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Favicon -->
+    <link href="../../static/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    {% load static %}
+    <script src="{% static 'script.js' %}"></script>
+</head>
+
+<body>
+    <!-- Page Container -->
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="border-radius: 0;">
+                <div class="navbar-header">
+                    <!-- Nav Logo -->
+                    <div class="navbar-brand">
+                        {% load static %}
+                        <a href="/"><img src="{% static 'logo.png' %}" height="50px" width="auto" alt="Logo" /></a>
+                    </div>
+                    <!-- Toggle button -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks"
+                        aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <!-- Nav Links -->
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-haspopup="true" href="/">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-haspopup="true" href="/account">Account</a>
+                        </li>
+                    </ul>
+                    <!-- Search Form -->
+                    <form class="form-inline mr-auto" id="search" role="search" action="/stock" method="POST">
+                        {% csrf_token %}
+                        <input class="form-control mr-sm-1" type="text" id="stockInput" name="ticker" placeholder="Symbol..." />
+                        <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" id="searchBtn" type="submit" name="submit">Search</button>
+                    </form>
+                    <!-- User Login -->
+                    <div class="navbar-text">
+                        <span>Welcome, </span>
+                        <span id="username">{{username}}</span>
+                        <span id="logout"><a href="">Logout</a></span>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content -->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-7">
+                        <!-- Stock Summary -->
+                        <div class="stockSummary ml-5">
+                            <h4>{{stock.name}}</h4>
+                            <h4>${{stock.price}}</h4>
+                            <p>${{stock.today}} Today</p>
+                        </div>
+                        <!-- Stock Plot -->
+                        <div class="plot">
+                            {% load static %}
+                            <img src="{% static 'stock.png' %}" width="auto" alt="stock" />
+                        </div>
+                        <!-- Plot Options -->
+                        <ul class="nav navbar nav-fill">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">1 Week</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">1 Month</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">1 Year</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">All Time</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-5">
+                        <!-- Stock Details -->
+                        <div class="card border-secondary bg-light mb-3 " id="stockOutput" style="max-width: 25rem;">
+                            <div class="card-header" id="stockSymbol">{{stock.symbol}}</div>
+                            <div class="card-body">
+                                <h4 class="card-title" id="stockName">{{stock.name}}</h4>
+                                <h5 class="card-subtitle">Price $<span id="stockPrice">{{stock.price}}</span></h5>
+                                <p class="card-text">Today $<span id="stockToday" {{todayColor}}>{{stock.today}}</span></p>
+                                <p class="card-text">High $<span id="stockHigh">{{stock.high}}</span></p>
+                                <p class="card-text">Low: $<span id="stockLow">{{stock.low}}</span></p>
+                                <p class="card-text">52 Week High: $<span>{{stock.fiftyTwoHigh}}</span></p>
+                                <p class="card-text">52 Week Low: $<span">{{stock.fiftyTwoLow}}</span></p>
+                                <p class="card-text">Shares Owned: <span id="sharesOwned">{{shares}}</span></p>
+                                <p class="card-text">Buying Power: $<span id="balance">{{balance}}</span></p>
+                                <!-- Trade Form -->
+                                <form id="tradeStock">
+                                    <div class="form-group">
+                                        <label for="stockShares">Shares: </label>
+                                        <input type="number" id="stockShares" placeholder="0" />
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col">
+                                            <button class="btn btn-success btn-block" id="buyBtn" type="button">Buy</button>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-danger btn-block" id="sellBtn" type="button">Sell</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <p class="card-text" id="result"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Wrap -->
+        <div id="footer">
+            <footer>
+                <div class="row justify-content-center">
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
